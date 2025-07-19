@@ -133,7 +133,7 @@
         </div>
 
         <div class="product">
-            <img src="./download.png" alt="Chicken" style="width: 110%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1px;">
+            <img src="./download.png" alt="Chicken" style="width: 50%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1px;">
             <h2>Chicken</h2>
             <p>#15,000</p><button onclick="updateQuantity('Chicken', 2500, -1)">-</button>
             <span id="Chicken-qty">0</span>
@@ -151,7 +151,7 @@
         </div>
 
         <div class="product">
-            <img src="./Catfish.jpg" alt="Catfish" style="width: 110%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 5px;">
+            <img src="./Catfish.jpg" alt="Catfish" style="width: 50%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 5px;">
             <h2>Catfish</h2>
             <p>#6,000</p><button onclick="updateQuantity('Catfish', 2500, -1)">-</button>
             <span id="Catfish-qty">0</span>
@@ -176,7 +176,7 @@
             <p style="color: green;"><em>Please transfer the total above and send proof of payment to Whatsapp:</em> <a href="https://wa.me/2348057210737" target="_blank" style="color: green;">08057210737</a></p>
         </div>
         
-        <button onclick="confirmPayment()('Please send payment proof to whatsapp after making transfer.')">I've Made Payment</button>
+<!--         <button onclick="confirmPayment()('Please send payment proof to whatsapp after making transfer.')">I've Made Payment</button> -->
     </section>
     <!-- <div id="cart-section"></div> -->
     
@@ -248,9 +248,9 @@
             document.getElementById('bank-details').style.display = 'block';
         }
 
-        function confirmPayment() {
-            window.location.href = "success.html";
-        }
+        // function confirmPayment() {
+        //     window.location.href = "success.html";
+        // }
     </script>
 </body>
 </html>
