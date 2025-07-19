@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oladunmoyo Farms</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header{
+            background-color: #4CAF50;
+            color: black;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .products{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .product{
+            background-color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 200px;
+            text-align: center;
+        }
+
+        .product button{
+            margin: 5px;
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .product button:hover {
+            background-color: #45a049;
+        }
+
+         #cart-section{ 
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background-color: rgb(65, 62, 62);
+            color: white;
+            border: 1px solid #35bf0f;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        } 
+
+        #cart-section h3{
+            margin-top: 0;
+        }
+
+        #cart-section ul{
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #cart-section li{
+            margin-bottom: 10px;
+        }
+
+        #bank-details{
+            margin: 20px;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        #bank-details button{
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #bank-details button:hover{
+            background-color: #0069d9;
+        }
+
+        .cart-btn{
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 101;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to Oladunmoyo Farms</h1>
+        <nav>
+            <button onclick="showCart()">View Cart (<span id="cart-count">0</span>)</button>
+            <!-- <a href="#" onclick="showCart()">Cart (<span id="cart-count">0</span>)</a> -->
+        </nav>
+    </header>
+
+    <h3>Products</h3>
+
+        <div class="product">
+            <img src="./eggs.jpg" alt="Eggs" style="border-radius: 15px; object-fit: cover; width: 110%; height: 200px;">
+            <h2>Eggs</h2>
+            <p>#2,500</p>
+            <button onclick="updateQuantity('Eggs', 2500, -1)">-</button>
+            <span id="Eggs-qty">0</span>
+            <button onclick="updateQuantity('Eggs', 2500, 1)">+</button>
+            <!-- <button onclick="addToCart('Eggs', 2500)">Add to Cart</button> -->
+        </div>
+
+        <div class="product">
+            <img src="./download.png" alt="Chicken" style="width: 110%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1px;">
+            <h2>Chicken</h2>
+            <p>#15,000</p><button onclick="updateQuantity('Chicken', 2500, -1)">-</button>
+            <span id="Chicken-qty">0</span>
+            <button onclick="updateQuantity('Chicken', 15000, 1)">+</button>
+            <!-- <button onclick="addToCart('Chicken', 15000)">Add to Cart</button> -->
+        </div>
+
+        <div class="product">
+            <img src="./Frozen-Whole-Chicken.webp" alt="Frozen Chicken" style="width: 100%; object-fit: cover; border-radius: 10px; margin-bottom: 5px;">
+            <h2>Frozen Chicken</h2>
+            <p>#5,000</p><button onclick="updateQuantity('Frozen Chicken', 2500, -1)">-</button>
+            <span id="Frozen Chicken-qty">0</span>
+            <button onclick="updateQuantity('Frozen Chicken', 5000, 1)">+</button>
+            <!-- <button onclick="addToCart('Frozen Chicken', 5000)">Add to Cart</button> -->
+        </div>
+
+        <div class="product">
+            <img src="./Catfish.jpg" alt="Catfish" style="width: 110%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 5px;">
+            <h2>Catfish</h2>
+            <p>#6,000</p><button onclick="updateQuantity('Catfish', 2500, -1)">-</button>
+            <span id="Catfish-qty">0</span>
+            <button onclick="updateQuantity('Catfish', 6000, 1)">+</button>
+            <!-- <button onclick="addToCart('Catfish', 6000)">Add to Cart</button> -->
+        </div>
+
+        <div id="cart-section"></div>
+
+    <!-- <section id="cart" style="display: none; padding: 20px;"> -->
+        <!-- <h2>Your Cart</h2> -->
+        <!-- <ul id="Cart-items"></ul> -->
+        <!-- <p><strong>Total:</strong> <span id="cart-total">0</span></p> -->
+        <!-- <button onclick="checkout()">Checkout</button> -->
+        
+        <div id="bank-details" style="display: none;">
+            <h3>Bank Account for Payment</h3>
+            <!-- <h3 style="margin-bottom: 5px;">Payment Info</h3> -->
+            <p><strong>BANK NAME:</strong>First Bank</p>
+            <p><strong>ACCOUNT NUMBER:</strong>2036042274</p>
+            <p><strong>ACCOUNT NAME:</strong>Oladunmoyo Farms</p>
+            <p style="color: green;"><em>Please transfer the total above and send proof of payment to Whatsapp:</em> <a href="https://wa.me/2348057210737" target="_blank" style="color: green;">08057210737</a></p>
+        </div>
+        
+        <button onclick="confirmPayment()('Please send payment proof to whatsapp after making transfer.')">I've Made Payment</button>
+    </section>
+    <!-- <div id="cart-section"></div> -->
+    
+    <script>
+        let cartItems = {};
+
+        function updateQuantity(name, price, change) {
+            price = parseInt(price);
+
+            if (!cartItems[name]) {
+                cartItems[name] = { price: price, quantity: 0 };
+            }
+            cartItems[name].quantity += change;
+            if (cartItems[name].quantity < 0) cartItems[name].quantity = 0;
+            document.getElementById(name + '-qty').innerText = cartItems[name].quantity;
+            updateCartCount();
+
+            if (change > 0) {
+                alert(name + 'has been added to your cart!');
+            }
+        }
+
+        function updateCartCount() {
+            let totalItems = 0;
+            for (let item in cartItems) {
+                totalItems += cartItems[item].quantity;
+            }
+            document.getElementById('cart-count').innerText = totalItems;
+        }
+
+        // function addToCart(name, price) {
+        //     cartItems.push({name, price});
+        //     document.getElementById('cart-count').innerText = cartItems.length;
+
+        //     // Alert that product was added
+        //     alert(name + 'has been added to your cart!');
+        // }
+        function showCart() {
+            const cartSection = document.getElementById('cart-section');
+            let total = 0;
+            let html = '<h3>Your Cart</h3><ul>';
+
+                for(let item in cartItems) {
+                    if (cartItems[item].quantity > 0) {
+                        let itemTotal = cartItems[item].price * cartItems[item].quantity;
+                        html += `<li>${item} x ${cartItems[item].quantity} - #${itemTotal}</li>`;
+                        total += itemTotal;
+                    }
+                }
+
+            if (total === 0) {
+                cartSection.innerHTML = '<p>Your cart is empty.</p>';
+                return;
+            }
+
+            // let html = '<h3>Your Cart</h3><ul>';
+            // let total = 0;
+            // cartItems.forEach(item => {
+            //     html += `<li>${item.name} - #${item.price}</li>`;
+            //     total += item.price;
+            // });
+
+            html += `</ul><p><strong>Total: #${total}</strong></p>`;
+            html += `<button onclick="showBankDetails()">Checkout</button>`;
+            cartSection.innerHTML = html;
+        }
+
+        function showBankDetails() {
+            document.getElementById('bank-details').style.display = 'block';
+        }
+
+        function confirmPayment() {
+            window.location.href = "success.html";
+        }
+    </script>
+</body>
+</html>
